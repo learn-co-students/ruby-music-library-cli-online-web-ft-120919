@@ -31,20 +31,25 @@ class Song
     
     def artist
         @artist
+        # @songs.collect{|s| s.artist}.uniq
     end
 
     def artist=(artist) # question on this do i need an if statement? and do this nd adds the song to the artist's collection of songs
-        # if @artist != nil
-            
+        # if @artist != nil   
         # end
-        @artist = artist
-        # binding.pry
-        if artist.songs.include?(self)
-        else
-            artist.add_song(self) 
-        end
-    end
+        
 
+        # 
+
+        @artist = artist # puts song into songs using add_song
+        # artist.add_song(self) unless artist.songs.include?(self)
+        # if artist.songs.include?(self)
+        # else
+        #     artist.add_song(self) 
+        # end
+        # binding.pry
+    end
+    
     def genre 
         @genre
     end
