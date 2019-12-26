@@ -31,4 +31,12 @@ class Song
     def artist
         @artist
     end
+
+    def artist=(artist) # question on this do i need an if statement? and do this nd adds the song to the artist's collection of songs
+        # if @artist != nil
+            
+        # end
+        @artist = artist
+        artist.add_song(self)
+    end
 end
