@@ -28,4 +28,7 @@ class Song
         song = self.new(name)
     end
     
+    def artist
+        @artist
+    end
 end
