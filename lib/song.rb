@@ -6,9 +6,10 @@ class Song
 
     @@all = []
 
-    def initialize(name, artist=nil)
+    def initialize(name, artist=nil, genre=nil)
         @name = name 
         @artist = artist
+        @genre = genre
         save
     end
 
@@ -37,6 +38,18 @@ class Song
             
         # end
         @artist = artist
-        artist.add_song(self)
+        # binding.pry
+        if artist.songs.include?(self)
+        else
+            artist.add_song(self) 
+        end
     end
+
+    def genre 
+        @genre
+    end
+
+    # def genre=(genre)
+    #     @genre = genre
+    # end
 end
