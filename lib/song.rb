@@ -8,9 +8,9 @@ class Song
 
     def initialize(name, artist=nil, genre=nil)
         @name = name 
-        @artist = artist
-        @genre = genre
-        save
+        @artist = artist if artist != nil && artist.class == Artist
+        @genre = genre if genre != nil && genre.class == Genre
+        
     end
 
     def self.all
@@ -27,6 +27,8 @@ class Song
 
     def self.create(name)
         song = self.new(name)
+        song.save
+        song 
     end
     
     def artist
@@ -35,19 +37,21 @@ class Song
     end
 
     def artist=(artist) # question on this do i need an if statement? and do this nd adds the song to the artist's collection of songs
-        # if @artist != nil   
-        # end
         
+        # @artist = artist
+        # self.artist = Artist.create(artist)
+        # artist.add_song(self)
 
-        # 
 
-        @artist = artist # puts song into songs using add_song
+        # @artist = artist # puts song into songs using add_song
+        # self.artist = Artist.create(artist)
+        
         # artist.add_song(self) unless artist.songs.include?(self)
         # if artist.songs.include?(self)
         # else
         #     artist.add_song(self) 
         # end
-        # binding.pry
+        # binding.pry    
     end
     
     def genre 
@@ -57,4 +61,13 @@ class Song
     # def genre=(genre)
     #     @genre = genre
     # end
+
+    def self.find_by_name(name)
+        @@all.detect { |song| song.name == name }
+    end
+
+    def self.find_or_create_by_name(name)
+       self.find_by_name(name) || self.create(name) 
+    end
+
 end
