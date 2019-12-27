@@ -38,14 +38,22 @@ class MusicLibraryController
     end
 
     def list_artists
-        a = Dir.glob("#{@path}/*.mp3").collect{ |f| f.gsub("#{@path}/", "") }
+        # a = Dir.glob("#{@path}/*.mp3").collect{ |f| f.gsub("#{@path}/", "") }
 
+        # new_array = []
+        # a.each { |a| new_array << a.split(" - ")[0]}
+        # sorted_array = new_array.sort.uniq
+        # sorted_array.each_with_index do |file, index| 
+        #     puts "#{index+1}. #{file}"
+        # end
+        # binding.pry
         new_array = []
-        a.each { |a| new_array << a.split(" - ")[0]}
-        sorted_array = new_array.sort.uniq
+        Artist.all.each { |artist| new_array << artist.name}
+        sorted_array = new_array.sort 
         sorted_array.each_with_index do |file, index| 
             puts "#{index+1}. #{file}"
         end
+
     end
 
     def list_genres
