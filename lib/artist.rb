@@ -45,5 +45,10 @@ class Artist
         # song.artist = self
         @songs
     end
+
+    def genres 
+        
+
+    end
     
 end
