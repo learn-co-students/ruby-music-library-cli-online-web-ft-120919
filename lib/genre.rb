@@ -33,5 +33,15 @@ class Genre
     def songs 
         @songs
     end
+
+    def add_song(song)
+        if song.genre == nil
+           song.genre = self
+        end
+        if !@songs.include?(song)
+            @songs << song
+        end
+        @songs
+    end
     
 end

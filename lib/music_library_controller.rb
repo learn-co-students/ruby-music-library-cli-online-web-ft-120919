@@ -59,11 +59,29 @@ class MusicLibraryController
         end
     end
 
-    def list_songs_by_artist
+    def list_songs_by_artist # "1. Green Aisles - country" Real Estate - Green Aisles - country // Real Estate - It's Real - hip-hop
         puts "Please enter the name of an artist:"
         user_input_artist = gets.chomp
+        
+        # need to loop???? exit?
+        #  a = list_songs.select { |song_artist_genre| song_artist_genre[1] ==  "Real Estate"}
+        # a.each_with_index { |a, index| puts "#{index+1}. #{a[0]} - #{a[2].delete_suffix(".mp3")}"}
+        # binding.pry
+    end
+
+    def list_songs_by_genre
+        puts "Please enter the name of a genre:"
+        user_input_genre = gets.chomp
+
+        a = list_songs.select { |song_artist_genre| song_artist_genre[2].delete_suffix(".mp3") ==  "hip-hop"}
+        a.each_with_index { |a, index| puts "#{index+1}. #{a[0]} - #{a[1]}"}
+        # binding.pry
 
     end
+
+
+
+
 
 
 
