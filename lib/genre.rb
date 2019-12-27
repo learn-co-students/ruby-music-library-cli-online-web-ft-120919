@@ -43,6 +43,14 @@ class Genre
         @songs
     end
 
-    
+    def artists
+        # binding.pry
+        art = []
+        self.songs.each { |song| art << song.artist}
+        art.uniq
+
+    end
+
+
     
 end
