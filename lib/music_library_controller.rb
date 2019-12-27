@@ -23,17 +23,12 @@ class MusicLibraryController
 
     def list_songs 
         # binding.pry
-        # Song.all
 
-        a = Dir.glob("#{@path}/*.mp3").collect{ |f| f.gsub("#{@path}/", "") }
         new_array = []
-        a.each do |a| 
-            new_array << a.split(' - ')
-        end
-        new_array.each { |b| b[0], b[1] = b[1], b[0] }
-        sorted_array = new_array.sort
+        Song.all.each { |song| new_array << song.name + ' - ' + song.artist.name + ' - ' + song.genre.name}
+        sorted_array = new_array.sort 
         sorted_array.each_with_index do |file, index| 
-            puts "#{index+1}. #{file[1]} - #{file[0]} - #{file[2].delete_suffix(".mp3")}"
+            puts "#{index+1}. #{file.split(' - ')[1]} - #{file.split(' - ')[0]} - #{file.split(' - ')[2]}"
         end
     end
 
@@ -49,13 +44,21 @@ class MusicLibraryController
     end
 
     def list_genres
-        a = Dir.glob("#{@path}/*.mp3").collect{ |f| f.gsub("#{@path}/", "") }
+        # a = Dir.glob("#{@path}/*.mp3").collect{ |f| f.gsub("#{@path}/", "") }
 
+        # new_array = []
+        # a.each { |a| new_array << a.split(" - ")[2]}
+        # sorted_array = new_array.sort.uniq
+        # sorted_array.each_with_index do |file, index| 
+        #     puts "#{index+1}. #{file.delete_suffix(".mp3")}"
+        # end
+
+        a = Genre.all 
         new_array = []
-        a.each { |a| new_array << a.split(" - ")[2]}
-        sorted_array = new_array.sort.uniq
+        Genre.all.each { |genre| new_array << genre.name}
+        sorted_array = new_array.sort 
         sorted_array.each_with_index do |file, index| 
-            puts "#{index+1}. #{file.delete_suffix(".mp3")}"
+            puts "#{index+1}. #{file}"
         end
     end
 
@@ -88,10 +91,12 @@ class MusicLibraryController
 
     def play_song 
         puts "Which song number would you like to play?"
-        list_songs
-        user_input_play = gets.chomp
-        # binding.pry
-        puts "Playing #{list_songs[user_input_play-1][1]} by #{list_songs[user_input_play-1][0]}" if user_input_play > 1 && user_input_play < Song.all.length + 1
+        user_input_play = gets.chomp.to_i
+        if (1..Song.all.length).include?(user_input_play)
+            song = Song.all.sort{|a, b| a.name <=> b.name}[user_input_play-1] 
+        end
+        
+        puts "Playing #{song.name} by #{song.artist.name}" if song
     end
 
 
