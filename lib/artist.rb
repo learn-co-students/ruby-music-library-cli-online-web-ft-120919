@@ -10,7 +10,6 @@ class Artist
 
     def initialize(name)
         @name = name 
-        save
         @songs = []
     end
 
@@ -26,9 +25,9 @@ class Artist
         @@all << self
     end
 
-    def self.create(name)
-        song = self.new(name)
-    end
+    # def self.create(name)
+    #     song = self.new(name)
+    # end
 
     def songs 
         @songs
@@ -47,8 +46,18 @@ class Artist
     end
 
     def genres 
-        
-
+        # binding.pry
+        # Genre.all.select do |g|  
+        #     g.songs.artist == self 
+        # end
     end
+
+    # Meal.all.select do |meal|
+    #     meal.customer == self
+    #   end
     
+    #   meals.map do |meal|
+    #     meal.waiter
+    #   end  
+
 end
