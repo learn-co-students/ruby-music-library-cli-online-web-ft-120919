@@ -86,14 +86,13 @@ class MusicLibraryController
         end
     end
 
-    
-
-
-
-
-
-
-
+    def play_song 
+        puts "Which song number would you like to play?"
+        list_songs
+        user_input_play = gets.chomp
+        # binding.pry
+        puts "Playing #{list_songs[user_input_play-1][1]} by #{list_songs[user_input_play-1][0]}" if user_input_play > 1 && user_input_play < Song.all.length + 1
+    end
 
 
 
