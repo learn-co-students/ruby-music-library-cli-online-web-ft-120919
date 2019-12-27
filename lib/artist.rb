@@ -53,14 +53,6 @@ class Artist
         # Genre.all.select do |g|  
         #     g.songs.artist == self 
         # end
-    end
-
-    # Meal.all.select do |meal|
-    #     meal.customer == self
-    #   end
-    
-    #   meals.map do |meal|
-    #     meal.waiter
-    #   end  
+    end  
 
 end

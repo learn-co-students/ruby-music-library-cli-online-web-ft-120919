@@ -38,15 +38,7 @@ class MusicLibraryController
     end
 
     def list_artists
-        # a = Dir.glob("#{@path}/*.mp3").collect{ |f| f.gsub("#{@path}/", "") }
-
-        # new_array = []
-        # a.each { |a| new_array << a.split(" - ")[0]}
-        # sorted_array = new_array.sort.uniq
-        # sorted_array.each_with_index do |file, index| 
-        #     puts "#{index+1}. #{file}"
-        # end
-        # binding.pry
+        
         new_array = []
         Artist.all.each { |artist| new_array << artist.name}
         sorted_array = new_array.sort 
@@ -67,25 +59,34 @@ class MusicLibraryController
         end
     end
 
-    def list_songs_by_artist # "1. Green Aisles - country" Real Estate - Green Aisles - country // Real Estate - It's Real - hip-hop
+    # "1. Green Aisles - country" Real Estate - Green Aisles - country // Real Estate - It's Real - hip-hop
+        
+    def list_songs_by_artist 
         puts "Please enter the name of an artist:"
         user_input_artist = gets.chomp
-        
-        # need to loop???? exit?
-        #  a = list_songs.select { |song_artist_genre| song_artist_genre[1] ==  "Real Estate"}
-        # a.each_with_index { |a, index| puts "#{index+1}. #{a[0]} - #{a[2].delete_suffix(".mp3")}"}
-        # binding.pry
+        if Artist.find_by_name(user_input_artist)
+            a = Artist.find_by_name(user_input_artist)
+            new_array = []
+            a.songs.each { |song| new_array << song.name + " - " + song.genre.name}
+            sorted = new_array.sort
+            sorted.each_with_index { |list_songs, index| puts "#{index+1}. #{list_songs}" } 
+        end
     end
 
     def list_songs_by_genre
         puts "Please enter the name of a genre:"
         user_input_genre = gets.chomp
-
-        a = list_songs.select { |song_artist_genre| song_artist_genre[2].delete_suffix(".mp3") ==  "hip-hop"}
-        a.each_with_index { |a, index| puts "#{index+1}. #{a[0]} - #{a[1]}"}
-        # binding.pry
-
+        if Genre.find_by_name(user_input_genre)
+            a = Genre.find_by_name(user_input_genre)
+            new_array = []
+            a.songs.each { |song| new_array << song.name + " - " + song.artist.name}
+            sorted = new_array.sort
+            # binding.pry
+            sorted.each_with_index { |list_songs, index| puts "#{index+1}. #{list_songs.split(' - ')[1]} - #{list_songs.split(' - ')[0]}" }
+        end
     end
+
+    
 
 
 
