@@ -47,6 +47,9 @@ class Artist
 
     def genres 
         # binding.pry
+        gen = []
+        self.songs.each { |song| gen << song.genre}
+        gen.uniq
         # Genre.all.select do |g|  
         #     g.songs.artist == self 
         # end
