@@ -8,6 +8,7 @@ class Genre
   
   def initialize(name)
     @name = name
+    @songs = []
     save
   end
   
@@ -28,4 +29,14 @@ class Genre
     song.name = name 
     song
   end
+  
+  def songs
+    @songs
+  end
+  
+  def artists
+    artists = songs.collect {|song| song.artist}
+    artists.uniq 
+  end
+  
 end 
