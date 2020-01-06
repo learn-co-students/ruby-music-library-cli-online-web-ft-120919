@@ -1,8 +1,9 @@
 
 
 class Artist 
+  extend Concerns::Findable
   
-  attr_accessor :name, :songs, :genre
+  attr_accessor :name
   
   @@all = []
   
@@ -28,6 +29,10 @@ class Artist
     song = self.new(name)
     song.name = name 
     song
+  end
+  
+  def songs
+    @songs
   end
   
   def add_song(song)
