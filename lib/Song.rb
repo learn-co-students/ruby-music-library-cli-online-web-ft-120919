@@ -10,7 +10,7 @@ class Song
     @name = name
     self.artist = artist if artist
     self.genre = genre if genre 
-    save
+    # save 
   end
   
   def self.all 
@@ -27,7 +27,7 @@ class Song
   
   def self.create(name)
     song = self.new(name)
-    song.name = name 
+    song.save
     song
   end
   
