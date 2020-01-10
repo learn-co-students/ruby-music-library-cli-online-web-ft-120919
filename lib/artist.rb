@@ -45,7 +45,7 @@ class Artist
     end
 end
 
-test_artist = Artist.new("man")
+# test_artist = Artist.new("man")
 
-binding.pry
-"goodbye"
+# binding.pry
+# "goodbye"
