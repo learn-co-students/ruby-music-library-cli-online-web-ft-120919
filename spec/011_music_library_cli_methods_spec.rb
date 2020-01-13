@@ -112,7 +112,8 @@ describe "MusicLibraryController - CLI Methods" do
 
       expect($stdout).to receive(:puts).with("Please enter the name of a genre:")
 
-      music_library_controller.list_songs_by_artist
+#      music_library_controller.list_songs_by_artist <-- commented out because should be list_songs_by_artist_by_genre
+      music_library_controller.list_songs_by_genre
     end
 
     it "accepts user input" do
