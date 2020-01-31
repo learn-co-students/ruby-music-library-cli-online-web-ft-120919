@@ -1,4 +1,4 @@
-class Genre
+class Artist
   extend Concerns::Findable
 
   attr_accessor :name
@@ -24,15 +24,20 @@ class Genre
   end
 
   def self.create(name)
-    genre = new(name)
-    genre.save
-    genre
+    artist = new(name)
+    artist.save
+    artist
 
     # Or, as a one-liner:
-    # new(name).tap{ |g| g.save }
+    # new(name).tap{ |a| a.save }
   end
 
-  def artists
-    songs.collect{ |s| s.artist }.uniq
+  def add_song(song)
+    song.artist = self unless song.artist
+    songs << song unless songs.include?(song)
+  end
+
+  def genres
+    songs.collect{ |s| s.genre }.uniq
   end
 end
