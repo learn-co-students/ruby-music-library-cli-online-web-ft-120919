@@ -1,5 +1,14 @@
 require "spec_helper"
 
+class Song
+end
+
+def
+Song.new("Blank Space").name
+end
+
+Song.all
+
 describe "Song" do
   let(:song) { Song.new("In the Aeroplane Over the Sea") }
 
